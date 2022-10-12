@@ -30,4 +30,50 @@ Highlight.FillColor = highlight_settings.color
 Highlight.OutlineColor = highlight_settings.border_color
 Highlight.FillTransparency = highlight_settings.fill_transparency
 Highlight.OutlineTransparency = highlight_settings.outline_transparency
+	
+plr.Chatted:Connect(function(msg)
+	if msg == "/c esp toggle" then
+		if Highlight.Enabled == false then
+		BillBoardGUI.Enabled = true
+			Highlight.Enabled = true
+		else
+			BillBoardGUI.Enabled = false
+			Highlight.Enabled = false
+			end
+		end
+	end)
+end
+
+for _,plr in pairs(game.Players:GetPlayers()) do
+	
+	local speed = false
+	
+	plr.Chatted:Connect(function(msg)
+		if msg == "/c speed toggle" then
+			local hum = plr.Character:FindFirstChild("Humanoid")
+			if speed == false then
+				hum.WalkSpeed = 50.69420
+				speed = true
+			elseif speed == true then
+				hum.WalkSpeed = 16
+				speed = false
+			end
+		end
+	end)
+end
+
+for _,plr in pairs(game.Players:GetPlayers()) do
+	plr.Chatted:Connect(function(msg)
+		if msg == "/c block" then
+			local block = Instance.new("Part",workspace)
+			block.Position = plr.Character:WaitForChild("HumanoidRootPart").Position
+			block.CanCollide = false
+			block.Size = Vector3.new(8,8,8)
+			block.Material = Enum.Material.WoodPlanks
+			block.Color = Color3.fromRGB(255, 170, 127)
+			block.Anchored = true
+			block.Parent = workspace
+			block.Name = "big block from meincratf"
+		end
+	end)
 end
